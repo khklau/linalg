@@ -13,11 +13,11 @@ from linalg.matrix.matrix import Matrix
         ),
         (
             "Empty 1D matrix",
-            np.array([])
+            np.array([], dtype=np.dtype(float))
         ),
         (
             "1x3 matrix",
-            np.array([[1, 2, 3]])
+            np.array([[1, 2, 3]], dtype=np.dtype(float))
         )
     ]
 )
@@ -32,22 +32,22 @@ def test_create_invalid(test_case: str, input: np.ndarray):
         (
             "Empty coefficients",
             np.zeros(()),
-            np.array([[1], [2]])
+            np.array([[1], [2]], dtype=np.dtype(float))
         ),
         (
             "Empty targets",
-            np.array([[1, 2], [3, 4]]),
+            np.array([[1, 2], [3, 4]], dtype=np.dtype(float)),
             np.zeros(()),
         ),
         (
             "1D coefficients",
-            np.array([[1, 2, 3]]),
-            np.array([[1], [2]])
+            np.array([[1, 2, 3]], dtype=np.dtype(float)),
+            np.array([[1], [2]], dtype=np.dtype(float))
         ),
         (
             "1D targets",
-            np.array([[1, 2], [3, 4]]),
-            np.array([[1, 2]])
+            np.array([[1, 2], [3, 4]], dtype=np.dtype(float)),
+            np.array([[1, 2]], dtype=np.dtype(float))
         )
     ]
 )

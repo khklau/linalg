@@ -18,7 +18,8 @@ from linalg.matrix.matrix import Matrix
                         [2, 6, 4],
                         [3, 10, 9],
                         [1, 11, 7],
-                    ]
+                    ],
+                    dtype=np.dtype(float)
                 )
             ),
             0,
@@ -30,7 +31,8 @@ from linalg.matrix.matrix import Matrix
                         [2, 6, 4],
                         [0, 1, 3],
                         [1, 11, 7]
-                    ]
+                    ],
+                    dtype=np.dtype(float)
                 )
             ),
         ),
@@ -42,7 +44,8 @@ from linalg.matrix.matrix import Matrix
                         [2, 6, 4],
                         [3, 10, 9],
                         [1, 11, 7],
-                    ]
+                    ],
+                    dtype=np.dtype(float)
                 )
             ),
             0,
@@ -54,7 +57,8 @@ from linalg.matrix.matrix import Matrix
                         [2, 6, 4],
                         [3, 10, 9],
                         [0, 8, 5]
-                    ]
+                    ],
+                    dtype=np.dtype(float)
                 )
             )
         ),
@@ -66,7 +70,8 @@ from linalg.matrix.matrix import Matrix
                         [2, 6, 4],
                         [0, 1, 3],
                         [0, 8, 5]
-                    ]
+                    ],
+                    dtype=np.dtype(float)
                 )
             ),
             1,
@@ -78,7 +83,8 @@ from linalg.matrix.matrix import Matrix
                         [2, 6, 4],
                         [0, 1, 3],
                         [0, 0, -19]
-                    ]
+                    ],
+                    dtype=np.dtype(float)
                 )
             )
         ),

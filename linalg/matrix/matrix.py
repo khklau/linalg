@@ -9,13 +9,13 @@ from linalg.matrix.properties import Singularity
 @dataclass
 class Matrix:
     nd_array: np.array
-    augmented: bool
+    is_augmented: bool
     singularity: Singularity
 
     def __eq__(self, other: "Matrix") -> bool:
         is_equal = (
             np.array_equal(self.nd_array, other.nd_array)
-            and self.augmented == other.augmented
+            and self.is_augmented == other.is_augmented
             and self.singularity == other.singularity
         )
         return is_equal
@@ -38,12 +38,12 @@ class Matrix:
     def create_augmented(coefficients: np.ndarray, targets: np.ndarray) -> "Matrix":
         singularity = Singularity.SINGULAR
         determinant = np.linalg.det(coefficients)
-        if not np.isclose(determinant, 0):
+        if not np.isclose(determinant, 0, atol = 1e-5):
             singularity = Singularity.NON_SINGULAR
         augmented = np.hstack((coefficients, targets))
         return Matrix(
             nd_array=augmented,
-            augmented=True,
+            is_augmented=True,
             singularity=singularity
         )
 
@@ -51,10 +51,10 @@ class Matrix:
     def create(nd_array: np.ndarray) -> "Matrix":
         determinant = np.linalg.det(nd_array)
         singularity = Singularity.SINGULAR
-        if not np.isclose(determinant, 0):
+        if not np.isclose(determinant, 0, atol = 1e-5):
             singularity = Singularity.NON_SINGULAR
         return Matrix(
             nd_array=nd_array,
-            augmented=False,
+            is_augmented=False,
             singularity=singularity
         )

@@ -17,7 +17,8 @@ from linalg.matrix.search import main_diagonal
                     [
                         [1, 2],
                         [3, 4]
-                    ]
+                    ],
+                    dtype=np.dtype(float)
                 )
             ),
             [(0, 0), (1, 1)]
@@ -30,7 +31,8 @@ from linalg.matrix.search import main_diagonal
                         [1, 2, 3],
                         [4, 5, 6],
                         [7, 8, 9],
-                    ]
+                    ],
+                    dtype=np.dtype(float)
                 )
             ),
             [(0, 0), (1, 1), (2, 2)]
@@ -42,9 +44,10 @@ from linalg.matrix.search import main_diagonal
                     [
                         [1, 2],
                         [3, 4]
-                    ]
+                    ],
+                    dtype=np.dtype(float)
                 ),
-                np.array([[10], [20]]),
+                np.array([[10], [20]], dtype=np.dtype(float)),
             ),
             [(0, 0), (1, 1)]
         ),
@@ -56,9 +59,10 @@ from linalg.matrix.search import main_diagonal
                         [1, 2, 3],
                         [4, 5, 6],
                         [7, 8, 9],
-                    ]
+                    ],
+                    dtype=np.dtype(float)
                 ),
-                np.array([[10], [20], [30]]),
+                np.array([[10], [20], [30]], dtype=np.dtype(float)),
             ),
             [(0, 0), (1, 1), (2, 2)]
         ),

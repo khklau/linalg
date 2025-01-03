@@ -38,7 +38,7 @@ class Matrix:
     def create_augmented(coefficients: np.ndarray, targets: np.ndarray) -> "Matrix":
         singularity = Singularity.SINGULAR
         determinant = np.linalg.det(coefficients)
-        if not np.isclose(determinant, 0, atol = 1e-5):
+        if not np.isclose(determinant, 0, atol=1e-5):
             singularity = Singularity.NON_SINGULAR
         augmented = np.hstack((coefficients, targets))
         return Matrix(
@@ -51,7 +51,7 @@ class Matrix:
     def create(nd_array: np.ndarray) -> "Matrix":
         determinant = np.linalg.det(nd_array)
         singularity = Singularity.SINGULAR
-        if not np.isclose(determinant, 0, atol = 1e-5):
+        if not np.isclose(determinant, 0, atol=1e-5):
             singularity = Singularity.NON_SINGULAR
         return Matrix(
             nd_array=nd_array,

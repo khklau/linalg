@@ -3,7 +3,13 @@ from copy import deepcopy
 import numpy as np
 import pytest
 
-from linalg.matrix.echelon import to_row_echelon_form, shift_zero_pivots
+from linalg.matrix.echelon import (
+    back_subtitution,
+    reduce_pivots_to_1,
+    shift_zero_pivots,
+    to_reduced_row_echelon_form,
+    to_row_echelon_form,
+)
 from linalg.matrix.matrix import Matrix
 
 
@@ -169,3 +175,176 @@ def test_to_row_echelon_form(test_case: str, input: Matrix, expected: Matrix):
     actual = deepcopy(input)
     to_row_echelon_form(actual)
     assert expected == actual, f"{test_case}: wrong row echelon form"
+
+
+@pytest.mark.parametrize(
+    "test_case, input, expected",
+    [
+        (
+            "2x2 matrix",
+            Matrix.create(
+                np.array(
+                    [
+                        [4, 12],
+                        [0, 2],
+                    ],
+                    dtype=np.dtype(float)
+                )
+            ),
+            Matrix.create(
+                np.array(
+                    [
+                        [1, 3],
+                        [0, 1],
+                    ],
+                    dtype=np.dtype(float)
+                )
+            )
+        ),
+        (
+            "3x3 matrix",
+            Matrix.create(
+                np.array(
+                    [
+                        [-2, 6, -4],
+                        [0, 1, 3],
+                        [0, 0, -8],
+                    ],
+                    dtype=np.dtype(float)
+                )
+            ),
+            Matrix.create(
+                np.array(
+                    [
+                        [1, -3, 2],
+                        [0, 1, 3],
+                        [0, 0, 1]
+                    ],
+                    dtype=np.dtype(float)
+                )
+            )
+        ),
+    ]
+)
+def test_reduce_pivots_to_1(test_case: str, input: Matrix, expected: Matrix):
+    actual = deepcopy(input)
+    reduce_pivots_to_1(actual)
+    assert expected == actual, f"{test_case}: wrong pivot reduction"
+
+
+@pytest.mark.parametrize(
+    "test_case, input, expected",
+    [
+        (
+            "2x2 augmented matrix",
+            Matrix.create_augmented(
+                np.array(
+                    [
+                        [1, 12],
+                        [0, 1],
+                    ],
+                    dtype=np.dtype(float)
+                ),
+                np.array([[36], [4]])
+            ),
+            Matrix.create_augmented(
+                np.array(
+                    [
+                        [1, 0],
+                        [0, 1],
+                    ],
+                    dtype=np.dtype(float)
+                ),
+                np.array([[-12], [4]])
+            )
+        ),
+        (
+            "3x3 matrix",
+            Matrix.create_augmented(
+                np.array(
+                    [
+                        [1, 8, -4],
+                        [0, 1, 5],
+                        [0, 0, 1],
+                    ],
+                    dtype=np.dtype(float)
+                ),
+                np.array([[16], [20], [6]])
+            ),
+            Matrix.create_augmented(
+                np.array(
+                    [
+                        [1, 0, 0],
+                        [0, 1, 0],
+                        [0, 0, 1]
+                    ],
+                    dtype=np.dtype(float)
+                ),
+                np.array([[120], [-10], [6]])
+            )
+        ),
+    ]
+)
+def test_back_substitution(test_case: str, input: Matrix, expected: Matrix):
+    actual = deepcopy(input)
+    back_subtitution(actual)
+    assert expected == actual, f"{test_case}: wrong back substiution"
+
+
+@pytest.mark.parametrize(
+    "test_case, input, expected",
+    [
+        (
+            "2x2 augmented matrix",
+            Matrix.create_augmented(
+                np.array(
+                    [
+                        [1, 12],
+                        [0, 1],
+                    ],
+                    dtype=np.dtype(float)
+                ),
+                np.array([[36], [4]])
+            ),
+            Matrix.create_augmented(
+                np.array(
+                    [
+                        [1, 0],
+                        [0, 1],
+                    ],
+                    dtype=np.dtype(float)
+                ),
+                np.array([[-12], [4]])
+            )
+        ),
+        (
+            "3x3 matrix",
+            Matrix.create_augmented(
+                np.array(
+                    [
+                        [1, 8, -4],
+                        [0, 1, 5],
+                        [0, 0, 1],
+                    ],
+                    dtype=np.dtype(float)
+                ),
+                np.array([[16], [20], [6]])
+            ),
+            Matrix.create_augmented(
+                np.array(
+                    [
+                        [1, 0, 0],
+                        [0, 1, 0],
+                        [0, 0, 1]
+                    ],
+                    dtype=np.dtype(float)
+                ),
+                np.array([[120], [-10], [6]])
+            )
+        ),
+    ]
+)
+def test_to_reduced_row_echelon_form(test_case: str, input: Matrix, expected: Matrix):
+    actual = deepcopy(input)
+    to_reduced_row_echelon_form(actual)
+    assert expected == actual, f"{test_case}: wrong reduced row echelon form"
